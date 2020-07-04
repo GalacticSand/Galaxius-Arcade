@@ -67,8 +67,9 @@ void go_optionScr() {
 }
 
 int main() {
-  TITLE:
   go_titleScr();
-  OPTIONS:
-  go_optionScr();
+  while (true) {
+    go_optionScr();
+    break;
+  }
 }
