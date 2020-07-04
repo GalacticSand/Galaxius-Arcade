@@ -24,6 +24,12 @@ void pr_titleScr() {
   std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
 }
 
+void go_titleScr() {
+  pr_titleScr();
+  std::cout << "\n===== Press Enter to Start =====" << std::endl;
+  std::cin.get();
+}
+
 void pr_optionScr() {
   system("clear");
   std::cout << ":::    \n";
@@ -34,6 +40,7 @@ void pr_optionScr() {
   std::cout << ":::\t 1. Start Game\n";
   std::cout << ":::\t 2. Settings\n";
   std::cout << ":::\t 3. Credits\n";
+  std::cout << ":::\t 4. Exit\n";
   std::cout << ":::    \n";
   std::cout << ":::    \n";
   std::cout << ":::    \n";
@@ -52,14 +59,16 @@ void go_optionScr() {
       break;
     case 3 :
       break;
+    case 4 :
+      break;
     default :
       break;
   }
 }
 
 int main() {
-  pr_titleScr();
-  std::cout << "\n===== Press Enter to Start =====" << std::endl;
-  std::cin.get();
+  TITLE:
+  go_titleScr();
+  OPTIONS:
   go_optionScr();
 }
