@@ -2,6 +2,9 @@
 #include <vector>
 #include <string>
 
+int opt;
+std::string decs;
+
 void pr_titleScr() {
   system("clear");
   std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
@@ -67,7 +70,6 @@ void optionScr() {
 
 int main() {
   titleScr();
-  int opt;
   while (true) {
     optionScr();
     break;
