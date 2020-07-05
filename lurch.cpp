@@ -24,7 +24,7 @@ void pr_titleScr() {
   std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
 }
 
-void go_titleScr() {
+void titleScr() {
   pr_titleScr();
   std::cout << "\n===== Press Enter to Start =====" << std::endl;
   std::cin.get();
@@ -48,8 +48,7 @@ void pr_optionScr() {
   std::cout << ":::    Select Option: ";
 }
 
-void go_optionScr() {
-  int opt;
+void optionScr() {
   pr_optionScr();
   std::cin >> opt;
   switch(opt) {
@@ -67,9 +66,10 @@ void go_optionScr() {
 }
 
 int main() {
-  go_titleScr();
+  titleScr();
+  int opt;
   while (true) {
-    go_optionScr();
+    optionScr();
     break;
   }
 }
