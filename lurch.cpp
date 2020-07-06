@@ -51,11 +51,55 @@ void pr_optionScr() {
   std::cout << ":::    Select Option: ";
 }
 
+int diffc;
+
+void pr_setupGame(int n) {
+  switch (n) {
+    case 1 :
+      system("clear");
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    === Start New Game of Lurch ===\n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    Select Difficulty:\n";
+      std::cout << ":::\t 1. Normal (8 x 8)\n";
+      std::cout << ":::\t 2. Difficult (10 x 10)\n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    Select Option: ";
+      std::cin >> opt;
+      diffc = opt;
+    case 2 :
+      system("clear");
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    === Start New Game of Lurch ===\n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+    case 3 :
+      //add code later
+      break;
+  }
+}
+
+void setupGame() {
+  pr_setupGame(1);
+}
+
+void startGame() {
+  // add code later
+}
+
 void optionScr() {
   pr_optionScr();
   std::cin >> opt;
   switch(opt) {
     case 1 :
+      setupGame();
+      startGame();
       break;
     case 2 :
       break;
