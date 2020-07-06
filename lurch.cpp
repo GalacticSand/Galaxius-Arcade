@@ -77,8 +77,8 @@ std::vector<std::vector<std::string>> l_size_grid_t = {{"   ", "[A]", "[B]", "[C
                                                        {"11|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}, 
                                                        {"12|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}};
 std::string gs_blank = "( )";
-std::string gs_miss = "( )";
-std::string gs_hit = "( )";
+std::string gs_miss = "(~)";
+std::string gs_hit = "(#)";
 
 void pr_setupGame(int n) {
   switch (n) {
