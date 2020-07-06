@@ -85,13 +85,26 @@ std::string gs_blank = "( )";
 std::string gs_miss = "(~)";
 std::string gs_hit = "(#)";
 
+// Defining the "Ship" class for classification of ship types
+class Ship {
+    std::string name;
+    std::string tag;
+    int size;
+  public:
+    Ship(std::string n, std::string t, int s) {
+      name = n;
+      tag = t;
+      size = s;
+    }
+};
+
 // Define the ship types that will be placed on the board
-// Formatted {<ship_name>, <ship_length>, <ship_marker>}
-std::vector<std::list> s_carrier = {"Carrier", 5, "(C)"};
-std::vector<std::list> s_battleship = {"Battleship", 4, "(B)"};
-std::vector<std::list> s_destroyer = {"Destroyer", 3, "(D)"};
-std::vector<std::list> s_submarine = {"Submarine", 3, "(S)"};
-std::vector<std::list> s_ptboat = {"Patrol Boat", 2, "(P)"};
+// Formatted (<ship_name>, <ship_tag>, <ship_size>)
+Ship s_carr("Carrier", "(C)", 5);
+Ship s_batt("Battleship", "(B)", 4);
+Ship s_dest("Destroyer", "(D)", 3);
+Ship s_subm("Submarine", "(S)", 3);
+Ship s_ptbt("Patrol Boat", "(P)", 2);
 
 // Screen layouts for when starting a new game
 void pr_setupGame(int n) {
