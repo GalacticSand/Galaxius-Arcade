@@ -2,9 +2,11 @@
 #include <vector>
 #include <string>
 
+// Define necessary initial global variables
 int opt;
 std::string decs;
 
+// Some screen layout/art stuff for the title screen and other options at the main menu
 void pr_titleScr() {
   system("clear");
   std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
@@ -51,6 +53,7 @@ void pr_optionScr() {
   std::cout << ":::    Select Option: ";
 }
 
+// Define the default blank grid layouts for the normal-sized grid and large-sized grid
 int bsize;
 std::vector<std::vector<std::string>> n_size_grid_t = {{"   ", "[A]", "[B]", "[C]", "[D]", "[E]", "[F]", "[G]", "[H]", "[I]", "[J]"}, 
                                                        {"01|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}, 
@@ -76,10 +79,21 @@ std::vector<std::vector<std::string>> l_size_grid_t = {{"   ", "[A]", "[B]", "[C
                                                        {"10|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}, 
                                                        {"11|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}, 
                                                        {"12|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}};
+
+// Set the markers for blank space, miss, and hit
 std::string gs_blank = "( )";
 std::string gs_miss = "(~)";
 std::string gs_hit = "(#)";
 
+// Define the ship types that will be placed on the board
+// Formatted {<ship_name>, <ship_length>, <ship_marker>}
+std::vector<std::list> s_carrier = {"Carrier", 5, "(C)"};
+std::vector<std::list> s_battleship = {"Battleship", 4, "(B)"};
+std::vector<std::list> s_destroyer = {"Destroyer", 3, "(D)"};
+std::vector<std::list> s_submarine = {"Submarine", 3, "(S)"};
+std::vector<std::list> s_ptboat = {"Patrol Boat", 2, "(P)"};
+
+// Screen layouts for when starting a new game
 void pr_setupGame(int n) {
   switch (n) {
     case 1 :
@@ -106,7 +120,7 @@ void pr_setupGame(int n) {
       std::cout << ":::    === Start New Game of Lurch ===\n";
       std::cout << ":::    \n";
       std::cout << ":::    \n";
-      std::cout << ":::    
+      std::cout << ":::    \n";
     case 3 :
       // add code later
       break;
@@ -121,6 +135,7 @@ void startGame() {
   // add code later
 }
 
+// Navigation for Main Menu with additional primary functions
 void optionScr() {
   pr_optionScr();
   std::cin >> opt;
@@ -140,6 +155,7 @@ void optionScr() {
   }
 }
 
+// The main code space where primary functions are laid out and polling takes place
 int main() {
   titleScr();
   while (true) {
