@@ -22,7 +22,7 @@ void pr_titleScr() {
   std::cout << ":::                                                      :::\n";
   std::cout << ":::                                                      :::\n";
   std::cout << ":::               Created by GalacticSand                :::\n";
-  std::cout << ":::       (c)2018-2020 Galaxius Computer Software        :::\n";
+  std::cout << ":::        (c) 2020 - Galaxius Computer Software         :::\n";
   std::cout << ":::                                                      :::\n";
   std::cout << ":::                                                      :::\n";
   std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
