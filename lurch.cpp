@@ -5,6 +5,7 @@
 // Define necessary initial global variables
 int opt;
 std::string decs;
+bool termin;
 
 // Some screen layout/art stuff for the title screen and other options at the main menu
 void pr_titleScr() {
@@ -148,6 +149,19 @@ void startGame() {
   // add code later
 }
 
+void quitProg() {
+  system("clear");
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    Are you sure you want to quit? (Y/N): ";
+  std::cin >> decs;
+  if (decs == "Y" || decs == "y") {
+    termin = true;
+  }
+}
+
 // Navigation for Main Menu with additional primary functions
 void optionScr() {
   pr_optionScr();
@@ -162,6 +176,7 @@ void optionScr() {
     case 3 :
       break;
     case 4 :
+      quitProg();
       break;
     default :
       break;
@@ -171,8 +186,12 @@ void optionScr() {
 // The main code space where primary functions are laid out and polling takes place
 int main() {
   titleScr();
+  termin = false;
   while (true) {
     optionScr();
-    break;
+    if (termin) {
+      system("clear");
+      break;
+    }
   }
 }
