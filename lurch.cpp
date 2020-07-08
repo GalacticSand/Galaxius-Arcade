@@ -5,7 +5,7 @@
 // Define necessary initial global variables
 int opt;
 std::string decs;
-bool termin;
+bool termin = false;
 bool termin_alt = false;
 
 // Define the default blank grid layouts for the normal-sized grid and large-sized grid
@@ -38,10 +38,14 @@ std::vector<std::vector<std::string>> l_size_grid_t = {{"   ", "[A]", "[B]", "[C
                                                        {"11|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}, 
                                                        {"12|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}};
 
-// Set the markers for blank space, miss, and hit
-std::string gs_blank = "( )";
-std::string gs_miss = "(~)";
-std::string gs_hit = "(#)";
+// Defining the "Marker" class for general-use markers on the board
+class Marker {
+    std::string tag;
+  public:
+    Marker(std::string t) {
+      tag = t;
+    }
+};
 
 // Defining the "Ship" class for classification of ship types
 class Ship {
@@ -55,6 +59,12 @@ class Ship {
       size = s;
     }
 };
+
+// Define the types of standard markers that will be placed on the board (blank space, miss, hit)
+// Formatted (<marker_tag>)
+Marker gs_blank("( )");
+Marker gs_miss("(~)");
+Marker gs_hit("(#)");
 
 // Define the ship types that will be placed on the board
 // Formatted (<ship_name>, <ship_tag>, <ship_size>)
@@ -232,7 +242,6 @@ void optionScr() {
 // The main code space where primary functions are laid out and polling takes place
 int main() {
   titleScr();
-  termin = false;
   while (true) {
     optionScr();
     if (termin) {
