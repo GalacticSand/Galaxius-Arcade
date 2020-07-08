@@ -181,6 +181,7 @@ void pr_setupGameSure() {
   std::cout << ":::    Begin Game with these settings? (Y/N): ";
   std::cin >> decs;
   if (decs == "Y" || decs == "y") { termin_alt = true; }
+}
 
 void setupGame() {
   while (true) {
