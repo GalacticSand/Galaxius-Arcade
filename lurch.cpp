@@ -6,56 +6,13 @@
 int opt;
 std::string decs;
 bool termin;
-
-// Some screen layout/art stuff for the title screen and other options at the main menu
-void pr_titleScr() {
-  system("clear");
-  std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
-  std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
-  std::cout << ":::                                                      :::\n";
-  std::cout << ":::                        _____      ____               :::\n";
-  std::cout << ":::    |        |      |  |     \\    /    \\  |      |    :::\n";
-  std::cout << ":::    |        |      |  |_____/   |        |______|    :::\n";
-  std::cout << ":::    |        |      |  |     \\   |        |      |    :::\n";
-  std::cout << ":::     \\_____   \\____/   |      |   \\____/  |      |    :::\n";
-  std::cout << ":::    ______________________________________________    :::\n";
-  std::cout << ":::    ______________________________________________    :::\n";
-  std::cout << ":::                                                      :::\n";
-  std::cout << ":::                                                      :::\n";
-  std::cout << ":::               Created by GalacticSand                :::\n";
-  std::cout << ":::        (c) 2020 - Galaxius Computer Software         :::\n";
-  std::cout << ":::                                                      :::\n";
-  std::cout << ":::                                                      :::\n";
-  std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
-  std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
-}
-
-void titleScr() {
-  pr_titleScr();
-  std::cout << "\n===== Press Enter to Start =====" << std::endl;
-  std::cin.get();
-}
-
-void pr_optionScr() {
-  system("clear");
-  std::cout << ":::    \n";
-  std::cout << ":::    \n";
-  std::cout << ":::    === Lurch Main Menu ===\n";
-  std::cout << ":::    \n";
-  std::cout << ":::    \n";
-  std::cout << ":::\t 1. Start Game\n";
-  std::cout << ":::\t 2. Settings\n";
-  std::cout << ":::\t 3. Credits\n";
-  std::cout << ":::\t 4. Exit\n";
-  std::cout << ":::    \n";
-  std::cout << ":::    \n";
-  std::cout << ":::    \n";
-  std::cout << ":::    \n";
-  std::cout << ":::    Select Option: ";
-}
+bool termin_alt = false;
 
 // Define the default blank grid layouts for the normal-sized grid and large-sized grid
 int bsize;
+int gamemode;
+std::string plrname;
+std::string cpuname;
 std::vector<std::vector<std::string>> n_size_grid_t = {{"   ", "[A]", "[B]", "[C]", "[D]", "[E]", "[F]", "[G]", "[H]", "[I]", "[J]"}, 
                                                        {"01|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}, 
                                                        {"02|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}, 
@@ -107,6 +64,53 @@ Ship s_dest("Destroyer", "(D)", 3);
 Ship s_subm("Submarine", "(S)", 3);
 Ship s_ptbt("Patrol Boat", "(P)", 2);
 
+// Some screen layout/art stuff for the title screen and other options at the main menu
+void pr_titleScr() {
+  system("clear");
+  std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
+  std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
+  std::cout << ":::                                                      :::\n";
+  std::cout << ":::                        _____      ____               :::\n";
+  std::cout << ":::    |        |      |  |     \\    /    \\  |      |    :::\n";
+  std::cout << ":::    |        |      |  |_____/   |        |______|    :::\n";
+  std::cout << ":::    |        |      |  |     \\   |        |      |    :::\n";
+  std::cout << ":::     \\_____   \\____/   |      |   \\____/  |      |    :::\n";
+  std::cout << ":::    ______________________________________________    :::\n";
+  std::cout << ":::    ______________________________________________    :::\n";
+  std::cout << ":::                                                      :::\n";
+  std::cout << ":::                                                      :::\n";
+  std::cout << ":::               Created by GalacticSand                :::\n";
+  std::cout << ":::        (c) 2020 - Galaxius Computer Software         :::\n";
+  std::cout << ":::                                                      :::\n";
+  std::cout << ":::                                                      :::\n";
+  std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
+  std::cout << "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
+}
+
+void titleScr() {
+  pr_titleScr();
+  std::cout << "\n===== Press Enter to Start =====" << std::endl;
+  std::cin.get();
+}
+
+void pr_optionScr() {
+  system("clear");
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    === Lurch Main Menu ===\n";
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::\t 1. Start Game\n";
+  std::cout << ":::\t 2. Settings\n";
+  std::cout << ":::\t 3. Credits\n";
+  std::cout << ":::\t 4. Exit\n";
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    Select Option: ";
+}
+
 // Screen layouts for when starting a new game
 void pr_setupGame(int n) {
   switch (n) {
@@ -126,7 +130,6 @@ void pr_setupGame(int n) {
       std::cout << ":::    \n";
       std::cout << ":::    Select Option: ";
       std::cin >> bsize;
-      bsize = opt;
     case 2 :
       system("clear");
       std::cout << ":::    \n";
@@ -134,15 +137,57 @@ void pr_setupGame(int n) {
       std::cout << ":::    === Start New Game of Lurch ===\n";
       std::cout << ":::    \n";
       std::cout << ":::    \n";
+      std::cout << ":::    Select Gamemode:\n";
+      std::cout << ":::\t 1. Target Practice\n";
+      std::cout << ":::\t 2. Battle Against The CPU\n";
       std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    Select Option: ";
+      std::cin >> gamemode;
     case 3 :
-      // add code later
+      system("clear");
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    === Start New Game of Lurch ===\n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    Enter your Screen Name: ";
+      std::cin >> plrname;
+      system("clear");
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    === Start New Game of Lurch ===\n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    Enter your Screen Name: " << plrname << "\n";
+      std::cout << ":::    Enter your Opponent's Name: ";
+      std::cin >> cpuname;
       break;
   }
 }
 
+void pr_setupGameSure() {
+  system("clear");
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    Begin Game with these settings? (Y/N): ";
+  std::cin >> decs;
+  if (decs == "Y" || decs == "y") { termin_alt = true; }
+
 void setupGame() {
-  pr_setupGame(1);
+  while (true) {
+    pr_setupGame(1);
+    pr_setupGameSure();
+    if (termin_alt) { break; }
+  }
 }
 
 void startGame() {
