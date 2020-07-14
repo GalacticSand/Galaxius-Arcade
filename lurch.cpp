@@ -4,17 +4,20 @@
 
 // Define necessary initial global variables
 int opt;
+std::vector<int> n_opt_list;
+std::vector<std::string> s_opt_list;
 std::string decs;
 bool termin = false;
 bool termin_alt = false;
-
-// Define the default blank grid layouts for the normal-sized grid and large-sized grid
+bool err = false;
 int bsize;
 int gamemode;
 std::string plrname;
 std::string cpuname;
 std::vector<std::vector<std::string>> plr_grid;
 std::vector<std::vector<std::string>> opp_grid;
+
+// Define the default blank grid layouts for the normal-sized grid and large-sized grid
 std::vector<std::vector<std::string>> n_size_grid_t = {{"   ", "[A]", "[B]", "[C]", "[D]", "[E]", "[F]", "[G]", "[H]", "[I]", "[J]"}, 
                                                        {"01|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}, 
                                                        {"02|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}, 
@@ -62,6 +65,16 @@ class Ship {
     }
 };
 
+// Define the function that will allow printing of the boards
+void gen_grid(std::vector<std::vector<std::string>> g) {
+  for (int i = 0; i < g.size(); i++) {
+    for (int j = 0; j < g[i].size(); j++) {
+      std::cout << g[i][j];
+    }
+    std::cout << std::endl;
+  }
+}
+
 // Define the types of standard markers that will be placed on the board (blank space, miss, hit)
 // Formatted marker_obj(<marker_tag>)
 Marker gs_blank("( )");
@@ -105,6 +118,18 @@ void titleScr() {
   std::cin.get();
 }
 
+// Allow checking for a certain option in the opt_list
+bool in_opt(int ch) {
+  int p = 0;
+  for (int i < 0; i < n_opt_list.size(); i++) {
+    if (n_opt_list[i] == ch) { p = 1; }
+  }
+  if (p = 1) { return true; }
+  else { return false; }
+}
+
+// Define the error system that will be used to prevent the program from going ape if the user does something wrong
+// I may eventually find a way to get rid of this and structure my code to prevent these errors
 void r_error(int s) {
   system("clear");
   switch(s) {
@@ -125,6 +150,7 @@ void r_error(int s) {
   }
 }
 
+// The layout for the main menu
 void pr_optionScr() {
   system("clear");
   std::cout << ":::    \n";
@@ -145,8 +171,10 @@ void pr_optionScr() {
 
 // Screen layouts for when starting a new game
 void pr_setupGame(int n) {
+  err = false;
   switch (n) {
     case 1 :
+      n_opt_list = {1, 2};
       system("clear");
       std::cout << ":::    \n";
       std::cout << ":::    \n";
@@ -162,7 +190,13 @@ void pr_setupGame(int n) {
       std::cout << ":::    \n";
       std::cout << ":::    Select Option: ";
       std::cin >> bsize;
+      if (!in_opt(bsize)) { 
+        err = true; 
+        break;
+      }
+      // if
     case 2 :
+      n_opt_list = {1, 2};
       system("clear");
       std::cout << ":::    \n";
       std::cout << ":::    \n";
@@ -178,6 +212,10 @@ void pr_setupGame(int n) {
       std::cout << ":::    \n";
       std::cout << ":::    Select Option: ";
       std::cin >> gamemode;
+      if (!in_opt(gamemode)) { 
+        err = true; 
+        break;
+      }
     case 3 :
       system("clear");
       std::cout << ":::    \n";
@@ -204,6 +242,7 @@ void pr_setupGame(int n) {
   }
 }
 
+// This prompt allows the user to redo the setup process if necessary
 void pr_setupGameSure() {
   system("clear");
   std::cout << ":::    \n";
@@ -215,10 +254,11 @@ void pr_setupGameSure() {
   if (decs == "Y" || decs == "y") { termin_alt = true; }
 }
 
+// Navigation for the game setup with additional polling in case setup needs to be redone
 void setupGame() {
   while (true) {
     pr_setupGame(1);
-    pr_setupGameSure();
+    if (!err) { pr_setupGameSure(); }
     if (termin_alt) { break; }
   }
   termin_alt = false;
@@ -236,14 +276,18 @@ void setupGame() {
       break;
 }
 
+// Initializes a new game
 void startGame() {
   // add code later
 }
 
+// Layout for Settings Menu
 void settingScr() { }  
 
+// Layout for Credits Screen
 void creditScr() { }
 
+// Layout for Quit Screen
 void quitProg() {
   system("clear");
   std::cout << ":::    \n";
@@ -279,7 +323,7 @@ void optionScr() {
   }
 }
 
-// The main code space where primary functions are laid out and polling takes place
+// The main code space where primary functions are laid out and the primary polling takes place
 int main() {
   titleScr();
   while (true) {
