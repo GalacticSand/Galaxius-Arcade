@@ -13,6 +13,8 @@ int bsize;
 int gamemode;
 std::string plrname;
 std::string cpuname;
+std::vector<std::vector<std::string>> plr_grid;
+std::vector<std::vector<std::string>> opp_grid;
 std::vector<std::vector<std::string>> n_size_grid_t = {{"   ", "[A]", "[B]", "[C]", "[D]", "[E]", "[F]", "[G]", "[H]", "[I]", "[J]"}, 
                                                        {"01|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}, 
                                                        {"02|", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )", "( )"}, 
@@ -61,13 +63,13 @@ class Ship {
 };
 
 // Define the types of standard markers that will be placed on the board (blank space, miss, hit)
-// Formatted (<marker_tag>)
+// Formatted marker_obj(<marker_tag>)
 Marker gs_blank("( )");
 Marker gs_miss("(~)");
 Marker gs_hit("(#)");
 
 // Define the ship types that will be placed on the board
-// Formatted (<ship_name>, <ship_tag>, <ship_size>)
+// Formatted ship_obj(<ship_name>, <ship_tag>, <ship_size>)
 Ship s_carr("Carrier", "(C)", 5);
 Ship s_batt("Battleship", "(B)", 4);
 Ship s_dest("Destroyer", "(D)", 3);
@@ -101,6 +103,26 @@ void titleScr() {
   pr_titleScr();
   std::cout << "\n===== Press Enter to Start =====" << std::endl;
   std::cin.get();
+}
+
+void r_error(int s) {
+  system("clear");
+  switch(s) {
+    case 1 :
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    ERROR 0001\n";
+      std::cout << ":::    \n";
+      std::cout << ":::    \n";
+      std::cout << ":::    You have selected an option which is not present in the current menu.\n";
+      std::cout << ":::    Press Enter to return to The Main Menu.\n";
+      std::cin.get();
+      break;
+    case 2 :
+      break;
+    default :
+      break;
+  }
 }
 
 void pr_optionScr() {
@@ -199,11 +221,28 @@ void setupGame() {
     pr_setupGameSure();
     if (termin_alt) { break; }
   }
+  termin_alt = false;
+  switch(bsize) {
+    case 1 :
+      plr_grid = n_size_grid_t;
+      opp_grid = n_size_grid_t;
+      break;
+    case 2 :
+      plr_grid = l_size_grid_t;
+      opp_grid = l_size_grid_t;
+      break;
+    default :
+      r_error();
+      break;
 }
 
 void startGame() {
   // add code later
 }
+
+void settingScr() { }  
+
+void creditScr() { }
 
 void quitProg() {
   system("clear");
@@ -235,6 +274,7 @@ void optionScr() {
       quitProg();
       break;
     default :
+      r_error(1);
       break;
   }
 }
