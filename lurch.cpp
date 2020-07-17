@@ -114,14 +114,14 @@ void pr_titleScr() {
 
 void titleScr() {
   pr_titleScr();
-  std::cout << "\n===== Press Enter to Start =====" << std::endl;
+  std::cout << "\n<<< Press Enter to Start >>>" << std::endl;
   std::cin.get();
 }
 
 // Allow checking for a certain option in the opt_list
 bool in_opt(int ch) {
   int p = 0;
-  for (int i < 0; i < n_opt_list.size(); i++) {
+  for (int i = 0; i < n_opt_list.size(); i++) {
     if (n_opt_list[i] == ch) { p = 1; }
   }
   if (p = 1) { return true; }
@@ -194,7 +194,6 @@ void pr_setupGame(int n) {
         err = true; 
         break;
       }
-      // if
     case 2 :
       n_opt_list = {1, 2};
       system("clear");
@@ -272,7 +271,7 @@ void setupGame() {
       opp_grid = l_size_grid_t;
       break;
     default :
-      r_error();
+      r_error(1);
       break;
 }
 
@@ -282,7 +281,21 @@ void startGame() {
 }
 
 // Layout for Settings Menu
-void settingScr() { }  
+void settingScr() {
+  system("clear");
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    === Lurch Settings ===\n";
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    *** I haven't added any settings yet, but I will soon...***\n";
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    \n";
+  std::cout << ":::    <<< Press Enter to Continue >>>\n";
+  std::cin.get();
+}  
 
 // Layout for Credits Screen
 void creditScr() { }
@@ -303,6 +316,7 @@ void quitProg() {
 
 // Navigation for Main Menu with additional primary functions
 void optionScr() {
+  n_opt_list = {1, 2, 3, 4};
   pr_optionScr();
   std::cin >> opt;
   switch(opt) {
