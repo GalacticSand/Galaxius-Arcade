@@ -28,8 +28,8 @@ class Marker {
         }
         std::string get_l() { return label; }
         std::string get_t() { return tag; }
-        void change_l(std::string new_l) { label = new_l; }
-        void change_t(std::string new_t) { tag = new_t; }
+        void change_l(std::string n_label) { label = n_label; }
+        void change_t(std::string n_tag) { tag = n_tag; }
 };
 
 // INDIVIDUAL MARKER TYPES
