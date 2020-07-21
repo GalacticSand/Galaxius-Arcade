@@ -26,14 +26,18 @@ class Marker {
             label = l;
             tag = t;
         }
+        std::string get_l() { return label; }
+        std::string get_t() { return tag; }
+        void change_l(std::string new_l) { label = new_l; }
+        void change_t(std::string new_t) { tag = new_t; }
 };
 
 // INDIVIDUAL MARKER TYPES
-Marker mk_b("NULL", "[ ]");        // MARKER FOR BLANK SPACE
-Marker mk_r("red", "[R]");         // MARKER FOR RED CHIP
-Marker mk_y("yellow", "[Y]");      // MARKER FOR YELLOW CHIP
+Marker mk_blank("NULL", "[ ]");         // MARKER FOR BLANK SPACE
+Marker mk_red("red", "[#]");            // MARKER FOR RED CHIP
+Marker mk_yellow("yellow", "[$]");      // MARKER FOR YELLOW CHIP
 
-// GRID SIZE TYPES
+// SIZED GRIDS
 std::vector<std::vector<std::string>> ns_grid = {{"|A|", "|B|", "|C|", "|D|", "|E|", "|F|", "|G|"}, 
                                                  {"---", "---", "---", "---", "---", "---", "---"}, 
                                                  {"[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"}, 
@@ -44,7 +48,7 @@ std::vector<std::vector<std::string>> ns_grid = {{"|A|", "|B|", "|C|", "|D|", "|
                                                  {"[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"}, 
                                                  {"[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"}, 
                                                  {"---", "---", "---", "---", "---", "---", "---"}, 
-                                                 {"|_|", "   ", "   ", "|_|", "   ", "   ", "|_|"}};
+                                                 {"|=|", "   ", "   ", "|=|", "   ", "   ", "|=|"}};
 std::vector<std::vector<std::string>> ls_grid = {{"|A|", "|B|", "|C|", "|D|", "|E|", "|F|", "|G|", "|H|", "|I|"}, 
                                                  {"---", "---", "---", "---", "---", "---", "---", "---", "---"}, 
                                                  {"[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"}, 
@@ -57,18 +61,43 @@ std::vector<std::vector<std::string>> ls_grid = {{"|A|", "|B|", "|C|", "|D|", "|
                                                  {"[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"}, 
                                                  {"[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"}, 
                                                  {"---", "---", "---", "---", "---", "---", "---", "---", "---"}, 
-                                                 {"|_|", "   ", "   ", "   ", "|_|", "   ", "   ", "   ", "|_|"}};
+                                                 {"|=|", "   ", "|=|", "   ", "|=|", "   ", "|=|", "   ", "|=|"}};
 
 // RENDERING FOR GAME BOARDS
 void ren_grid() {
     for (int i = 0; i < a_grid.size(); i++) {
         std::cout << "::::\t";
-        for (int j = 0; j < a_grid[i].size(); j++) {
-            std::cout << a_grid[i][j];
-        }
+        for (int j = 0; j < a_grid[i].size(); j++) { std::cout << a_grid[i][j]; }
         std::cout << "\t::::" << std::endl;
     }
 }
+
+////// SET UP SCREENS
+
+void print_titlescr() {
+    system("clear");
+    std::cout << ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
+    std::cout << ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
+    std::cout << "::::                                                                     ::::\n";
+    std::cout << "::::      ___    ___                  _____   ___  _______               ::::\n";
+    std::cout << "::::     /   \\  /   \\  |\\   | |\\   | |       /   \\    |       |   |      ::::\n";
+    std::cout << "::::    |      |     | | \\  | | \\  | |_____ |         |       |   |      ::::\n";
+    std::cout << "::::    |      |     | |  \\ | |  \\ | |      |         |       |___|__    ::::\n";
+    std::cout << "::::     \\___/  \\___/  |   \\| |   \\| |_____  \\___/    |           |      ::::\n";
+    std::cout << "::::    _____________________________________________________________    ::::\n";
+    std::cout << "::::    _____________________________________________________________    ::::\n";
+    std::cout << "::::                                                                     ::::\n";
+    std::cout << "::::                                                                     ::::\n";
+    std::cout << "::::                      Programmed by GalacticSand                     ::::\n";
+    std::cout << "::::                (c) 2020 - Galaxius Computer Software                ::::\n";
+    std::cout << "::::                                                                     ::::\n";
+    std::cout << "::::                                                                     ::::\n";
+    std::cout << ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
+    std::cout << ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n"; 
+    std::cin.get();
+}
+
+////// SET UP FUNCTIONS AND GAMEPLAY
 
 ////// MAIN SPACE WHERE GAME INITIALIZES AND PRIMARY POLLING TAKES PLACE
 
