@@ -2,13 +2,13 @@
 #include <vector>
 #include <string>
 
-// SET UP PRIMARY GLOBAL VARIABLES AND SETS
+////// SET UP PRIMARY GLOBAL VARIABLES AND SETS
 
 bool pterm;          // TERMINATOR FOR MAIN POLLING
 bool pterm_alt;      // TERMINATOR FOR ANY SECONDARY POLLINGS
 int opt;             // STORES USER-CHOSEN OPTION AT SELECTION MENUS
 
-// SET UP SPRITES AND GRAPHICAL ITEMS
+////// SET UP SPRITES AND GRAPHICAL ITEMS
 
 std::string m_blank = "[ ]";      // 
 std::string m_rs = "[R]";         // 
@@ -38,7 +38,7 @@ std::vector<std::vector<std::string>> ls_grid = {{"|A|", "|B|", "|C|", "|D|", "|
                                                  {"---", "---", "---", "---", "---", "---", "---", "---", "---"}, 
                                                  {"|_|", "   ", "   ", "   ", "|_|", "   ", "   ", "   ", "|_|"}};
 
-// MAIN SPACE WHERE GAME INITIALIZES AND PRIMARY POLLING TAKES PLACE
+////// MAIN SPACE WHERE GAME INITIALIZES AND PRIMARY POLLING TAKES PLACE
 
 int main() {
     pterm = false;
