@@ -10,8 +10,8 @@ bool pterm_alt;                // TERMINATOR FOR ANY SECONDARY POLLINGS
 int opt;                       // STORES USER-CHOSEN OPTION AT SELECTION MENUS
 std::vector<int> opt_list;     // STORES THE LEGAL SELECTION OF OPTIONS AT A GIVEN PROMPT
 
-int grid_size;                 // STORES THE SIZE OF THE BOARD   - 1. NORMAL SIZE (7 x 7), 2. LARGE SIZE (9 x 9)
-int game_mode;                 // STORES THE GAMEMODE            - 1. COMPUTER MULTIPLAYER, 2. VERSUS MULTIPLAYER
+int grid_size;                 // STORES THE SIZE OF THE BOARD   - 1 = NORMAL SIZE (7 x 7), 2 = LARGE SIZE (9 x 9)
+int game_mode;                 // STORES THE GAMEMODE            - 1 = COMPUTER MULTIPLAYER, 2 = VERSUS MULTIPLAYER
 
 std::vector<std::vector<std::string>> a_grid;
 
