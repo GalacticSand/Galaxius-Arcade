@@ -13,8 +13,10 @@ std::vector<int> opt_list;     // STORES THE LEGAL SELECTION OF OPTIONS AT A GIV
 
 int grid_size;                 // STORES THE SIZE OF THE BOARD   - 1 = NORMAL SIZE (7 x 7), 2 = LARGE SIZE (9 x 9)
 int game_mode;                 // STORES THE GAMEMODE            - 1 = COMPUTER MULTIPLAYER, 2 = VERSUS MULTIPLAYER
+std::string player_a;          // STORES THE NAME OF PLAYER ONE
+std::string player_b;          // STORES THE NAME OF PLAYER TWO
 
-std::vector<std::vector<std::string>> a_grid;
+std::vector<std::vector<std::string>> a_grid;    // STORES THE ACTIVE GAME GRID
 
 ////// SET UP SPRITES AND GRAPHICAL ITEMS
 
@@ -85,18 +87,18 @@ bool in_opt(int n) {
     return qu;
 }
 
-void ren_sel(int o) {
+void ren_s(int o) {
     err = false;
     opt_list = {};
     for (int i = 0; i < o; i++) { opt_list.push(i + 1); }
     s_clear();
 }
 
-void ch_err() { if (!in_opt(opt)) { err = true; } }
+void ch_err(int c) { if (!in_opt(c)) { err = true; } }
 
 // SCREEN RENDERS
 void print_titlescr() {
-    ren_sel(1);
+    ren_s(1);
     std::cout << ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
     std::cout << ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
     std::cout << "::::                                                                     ::::\n";
@@ -121,10 +123,10 @@ void print_titlescr() {
 }
 
 void print_menuscr() {
-    ren_sel(3);
+    ren_s(3);
     std::cout << "::::\n";
     std::cout << "::::\n";
-    std::cout << "::::    Connect 4 - Main Menu\n";
+    std::cout << "::::    ( Connect 4 - Main Menu )\n";
     std::cout << "::::\n";
     std::cout << "::::\n";
     std::cout << "::::    1. Begin Game \n";
@@ -134,9 +136,80 @@ void print_menuscr() {
     std::cout << "::::\n";
     std::cout << "::::\n";
     std::cout << "::::\n";
-    std::cout << "::::    Select Option: ";
+    std::cout << "::::    Option: ";
     std::cin >> opt;
-    ch_err();
+    ch_err(opt);
+}
+
+void print_gsetup(int scr) {
+    switch(scr) {
+      case 1 :
+        ren_s(2);
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    ( Begin Game )\n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Select Board Size \n";
+        std::cout << "::::\n";
+        std::cout << "::::    1. Normal (7 x 7)\n";
+        std::cout << "::::    2. Large (9 x 9)\n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Option: ";
+        std::cin >> grid_size;
+        ch_err(grid_size);
+        break;
+      case 2 :
+        ren_s(2);
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    ( Begin Game )\n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Select Gamemode \n";
+        std::cout << "::::\n";
+        std::cout << "::::    1. CPU Multiplayer\n";
+        std::cout << "::::    2. Versus Multiplayer\n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Option: ";
+        std::cin >> gamemode;
+        ch_err(gamemode);
+        break;
+      case 3 :
+        ren_s(1);
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    ( Begin Game )\n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Players \n";
+        std::cout << "::::\n";
+        std::cout << "::::    1. \n";
+        std::cout << "::::    2. \n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Enter Player 1: ";
+        std::cin >> player_a;
+        break;
+      case 4 :
+        ren_s(1);
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    ( Begin Game )\n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Players \n";
+        std::cout << "::::\n";
+        std::cout << "::::    1. " << player_a << "\n";
+        std::cout << "::::    2. \n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Enter Player 2: ";
+        std::cin >> player_a;
+        break;
+    }
 }
 
 ////// SET UP FUNCTIONS AND GAMEPLAY
