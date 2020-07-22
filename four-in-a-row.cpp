@@ -191,7 +191,7 @@ void print_gsetup(int scr) {
         std::cout << "::::    Player 2 - \n";
         std::cout << "::::\n";
         std::cout << "::::\n";
-        std::cout << "::::    Enter Player 1: ";
+        std::cout << "::::    Enter Player 1 Name: ";
         std::cin >> player_a;
         break;
       case 4 :
@@ -207,7 +207,7 @@ void print_gsetup(int scr) {
         std::cout << "::::    Player 2 - \n";
         std::cout << "::::\n";
         std::cout << "::::\n";
-        std::cout << "::::    Enter Player 2: ";
+        std::cout << "::::    Enter Player 2 Name: ";
         std::cin >> player_b;
         break;
       case 5 :
@@ -239,7 +239,7 @@ void print_gsetup(int scr) {
         std::cout << "::::    Player 2 - The Computer \n";
         std::cout << "::::\n";
         std::cout << "::::\n";
-        std::cout << "::::    Enter Player 1: ";
+        std::cout << "::::    Enter Player 1 Name: ";
         std::cin >> player_a;
         break;
       case 7 :
