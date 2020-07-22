@@ -126,7 +126,7 @@ void print_menuscr() {
     ren_s(3);
     std::cout << "::::\n";
     std::cout << "::::\n";
-    std::cout << "::::    ( Connect 4 - Main Menu )\n";
+    std::cout << "::::    === Connect 4 - Main Menu ===\n";
     std::cout << "::::\n";
     std::cout << "::::\n";
     std::cout << "::::    1. Begin Game \n";
@@ -147,7 +147,7 @@ void print_gsetup(int scr) {
         ren_s(2);
         std::cout << "::::\n";
         std::cout << "::::\n";
-        std::cout << "::::    ( Begin Game )\n";
+        std::cout << "::::    === Begin Game ===\n";
         std::cout << "::::\n";
         std::cout << "::::\n";
         std::cout << "::::    Select Board Size \n";
@@ -164,7 +164,7 @@ void print_gsetup(int scr) {
         ren_s(2);
         std::cout << "::::\n";
         std::cout << "::::\n";
-        std::cout << "::::    ( Begin Game )\n";
+        std::cout << "::::    === Begin Game ===\n";
         std::cout << "::::\n";
         std::cout << "::::\n";
         std::cout << "::::    Select Gamemode \n";
@@ -181,7 +181,7 @@ void print_gsetup(int scr) {
         ren_s(1);
         std::cout << "::::\n";
         std::cout << "::::\n";
-        std::cout << "::::    ( Begin Game )\n";
+        std::cout << "::::    === Begin Game ===\n";
         std::cout << "::::\n";
         std::cout << "::::\n";
         std::cout << "::::    Players \n";
@@ -197,7 +197,7 @@ void print_gsetup(int scr) {
         ren_s(1);
         std::cout << "::::\n";
         std::cout << "::::\n";
-        std::cout << "::::    ( Begin Game )\n";
+        std::cout << "::::    === Begin Game ===\n";
         std::cout << "::::\n";
         std::cout << "::::\n";
         std::cout << "::::    Players \n";
