@@ -121,7 +121,7 @@ void print_titlescr() {
 }
 
 void print_menuscr() {
-    ren_sel(3)
+    ren_sel(3);
     std::cout << "::::\n";
     std::cout << "::::\n";
     std::cout << "::::    Connect 4 - Main Menu\n";
