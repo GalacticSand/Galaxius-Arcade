@@ -9,6 +9,7 @@ bool pterm;                    // TERMINATOR FOR MAIN POLLING
 bool pterm_alt;                // TERMINATOR FOR ANY SECONDARY POLLINGS
 bool err;                      // INDICATOR FOR POSSIBLE ERROR RETURN AT SELECTION MENUS
 int opt;                       // STORES USER-CHOSEN OPTION AT SELECTION MENUS
+std::string bopt;              // STORES USER-CHOSEN "Y/N" SELECTION
 std::vector<int> opt_list;     // STORES THE LEGAL SELECTION OF OPTIONS AT A GIVEN PROMPT
 
 int grid_size;                 // STORES THE SIZE OF THE BOARD   - 1 = NORMAL SIZE (7 x 7), 2 = LARGE SIZE (9 x 9)
@@ -184,10 +185,10 @@ void print_gsetup(int scr) {
         std::cout << "::::    === Begin Game ===\n";
         std::cout << "::::\n";
         std::cout << "::::\n";
-        std::cout << "::::    Players \n";
+        std::cout << "::::    Current Players \n";
         std::cout << "::::\n";
-        std::cout << "::::    1. \n";
-        std::cout << "::::    2. \n";
+        std::cout << "::::    Player 1 - \n";
+        std::cout << "::::    Player 2 - \n";
         std::cout << "::::\n";
         std::cout << "::::\n";
         std::cout << "::::    Enter Player 1: ";
@@ -200,14 +201,62 @@ void print_gsetup(int scr) {
         std::cout << "::::    === Begin Game ===\n";
         std::cout << "::::\n";
         std::cout << "::::\n";
-        std::cout << "::::    Players \n";
+        std::cout << "::::    Current Players \n";
         std::cout << "::::\n";
-        std::cout << "::::    1. " << player_a << "\n";
-        std::cout << "::::    2. \n";
+        std::cout << "::::    Player 1 - " << player_a << " \n";
+        std::cout << "::::    Player 2 - \n";
         std::cout << "::::\n";
         std::cout << "::::\n";
         std::cout << "::::    Enter Player 2: ";
+        std::cin >> player_b;
+        break;
+      case 5 :
+        ren_s(1);
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    === Begin Game ===\n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Current Players \n";
+        std::cout << "::::\n";
+        std::cout << "::::    Player 1 - " << player_a << " \n";
+        std::cout << "::::    Player 2 - " << player_b << " \n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Continue with these settings? (Y/N) ";
+        std::cin >> bopt;
+        break;
+      case 6 :
+        ren_s(1);
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    === Begin Game ===\n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Current Players \n";
+        std::cout << "::::\n";
+        std::cout << "::::    Player 1 - \n";
+        std::cout << "::::    Player 2 - The Computer \n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Enter Player 1: ";
         std::cin >> player_a;
+        break;
+      case 7 :
+        ren_s(1);
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    === Begin Game ===\n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Current Players \n";
+        std::cout << "::::\n";
+        std::cout << "::::    Player 1 - " << player_a << " \n";
+        std::cout << "::::    Player 2 - The Computer \n";
+        std::cout << "::::\n";
+        std::cout << "::::\n";
+        std::cout << "::::    Continue with these settings? (Y/N) ";
+        std::cin >> bopt;
         break;
     }
 }
