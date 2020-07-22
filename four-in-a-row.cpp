@@ -12,34 +12,29 @@ int opt;                       // STORES USER-CHOSEN OPTION AT SELECTION MENUS
 std::string bopt;              // STORES USER-CHOSEN "Y/N" SELECTION
 std::vector<int> opt_list;     // STORES THE LEGAL SELECTION OF OPTIONS AT A GIVEN PROMPT
 
-int grid_size;                 // STORES THE SIZE OF THE BOARD   - 1 = NORMAL SIZE (7 x 7), 2 = LARGE SIZE (9 x 9)
-int game_mode;                 // STORES THE GAMEMODE            - 1 = COMPUTER MULTIPLAYER, 2 = VERSUS MULTIPLAYER
+int grid_size;                 // STORES THE SIZE OF THE BOARD           - 1 = NORMAL SIZE (7 x 7), 2 = LARGE SIZE (9 x 9)
+int game_mode;                 // STORES THE GAMEMODE                    - 1 = COMPUTER MULTIPLAYER, 2 = VERSUS MULTIPLAYER
 std::string player_a;          // STORES THE NAME OF PLAYER ONE
 std::string player_b;          // STORES THE NAME OF PLAYER TWO
+int marker_a;                  // STORES THE MARKER USED BY PLAYER ONE   - 1 = RED, 2 = YELLOW, 3 = BLUE, 4 = GREEN
+int marker_b;                  // STORES THE MARKER USED BY PLAYER TWO   - 1 = RED, 2 = YELLOW, 3 = BLUE, 4 = GREEN
 
 std::vector<std::vector<std::string>> a_grid;    // STORES THE ACTIVE GAME GRID
 
 ////// SET UP SPRITES AND GRAPHICAL ITEMS
 
-// CLASS FOR MARKER TYPES
-class Marker {
-        std::string label;
-        std::string tag;
+// CLASS FOR MARKER ATTRIBUTE SETS
+class AttrSet {
     public:
-        Marker(std::string l, std::string t) {
-            label = l;
-            tag = t;
-        }
-        std::string get_l() { return label; }
-        std::string get_t() { return tag; }
-        void change_l(std::string n_label) { label = n_label; }
-        void change_t(std::string n_tag) { tag = n_tag; }
+        std::vector<std::string> col;
+        void set(int index, std::string n_item) { col[index] = n_item; }
 };
-
-// INDIVIDUAL MARKER TYPES
-Marker mk_blank("NULL", "[ ]");         // MARKER FOR BLANK SPACE
-Marker mk_red("red", "[#]");            // MARKER FOR RED CHIP
-Marker mk_yellow("yellow", "[$]");      // MARKER FOR YELLOW CHIP
+        
+// INDIVIDUAL MARKER ATTRIBUTES
+AttrSet labels;
+AttrSet tags;
+labels.col = {"NULL", "red", "yellow", "blue", "green"};    // STORES THE NAMES OF THE MARKER TYPES
+tags.col = {"[ ]", "[#]", "[$]", "[%]", "[&]"};             // STORES THE SYMBOLS WHICH REPRESENT EACH MARKER TYPE
 
 // SIZED GRIDS
 std::vector<std::vector<std::string>> ns_grid = {{"|A|", "|B|", "|C|", "|D|", "|E|", "|F|", "|G|"}, 
