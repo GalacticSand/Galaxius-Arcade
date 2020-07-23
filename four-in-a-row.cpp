@@ -22,23 +22,11 @@ int marker_b;                  // STORES THE MARKER USED BY PLAYER TWO   - 1 = R
 std::vector<std::vector<std::string>> a_grid;    // STORES THE ACTIVE GAME GRID
 
 ////// SET UP SPRITES AND GRAPHICAL ITEMS
-
-// CLASS FOR MARKER ATTRIBUTE SETS
-class AttrSet {
-        std::vector<std::string> collect;    
-    public:
-        AttrSet(std::vector<std::string> c) { collect = c; }
-        void set(int index, std::string n_item) { collect[index] = n_item; }
-};
         
 // INDIVIDUAL MARKER ATTRIBUTES
-AttrSet labels;
-AttrSet tags;
-std::vector<std::string> l_c = {"NULL", "Red", "Yellow", "Blue", "Green"};
-std::vector<std::string> t_c = {"[ ]", "[#]", "[$]", "[%]", "[&]"};
-labels(l_c);                                                    // STORES THE NAMES OF THE MARKER TYPES
-tags(t_c);                                                      // STORES THE SYMBOLS WHICH REPRESENT EACH MARKER TYPE
-std::vector<std::string> mk_select;                             // STORES A LIST OF AVAILABLE CHIP/MARKER COLORS (FOR COLOR SELECTION)
+std::vector<std::string> labels_col = {"NULL", "Red", "Yellow", "Blue", "Green"};    // STORES THE NAMES OF THE MARKER TYPES
+std::vector<std::string> tags_col = {"[ ]", "[#]", "[$]", "[%]", "[&]"};             // STORES THE SYMBOLS WHICH REPRESENT EACH MARKER TYPE
+std::vector<std::string> mk_select;                                                  // STORES A LIST OF AVAILABLE CHIP/MARKER COLORS (FOR COLOR SELECTION)
 
 // SIZED GRIDS
 std::vector<std::vector<std::string>> ns_grid = {{"|A|", "|B|", "|C|", "|D|", "|E|", "|F|", "|G|"}, 
@@ -259,15 +247,9 @@ void print_gsetup(int scr) {      // RENDERS ALL OF THE SCREENS NEEDED FOR INITI
         break;
     }
 }
-/*
+
 void print_colorsel(int scr) {      // RENDERS THE SCREENS FOR COLOR SELECTION, SEPERATE DEFINITION PREVENTS TWO PLAYERS FROM PICKING THE SAME COLOR
     mk_select = {};
-    std::string conc_item;
-    for (int i = 0; i < tags.col.size(); i++) {
-        conc_item = "";
-        conc_item.append(i + 1, ". ", labels.col[i + 1], " ", tags.col[i + 1]);
-        mk_select.push_back(conc_item);
-    }
     switch(scr) {
       case 1 :
         ren_s(4);
@@ -302,7 +284,7 @@ void print_colorsel(int scr) {      // RENDERS THE SCREENS FOR COLOR SELECTION, 
         break;
     }
 }
-*/
+
 ////// SET UP FUNCTIONS AND GAMEPLAY
 
 ////// MAIN SPACE WHERE GAME INITIALIZES AND PRIMARY POLLING TAKES PLACE
