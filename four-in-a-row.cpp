@@ -25,17 +25,20 @@ std::vector<std::vector<std::string>> a_grid;    // STORES THE ACTIVE GAME GRID
 
 // CLASS FOR MARKER ATTRIBUTE SETS
 class AttrSet {
+        std::vector<std::string> collect;    
     public:
-        std::vector<std::string> col;
-        void set(int index, std::string n_item) { col[index] = n_item; }
+        AttrSet(std::vector<std::string> c) { collect = c; }
+        void set(int index, std::string n_item) { collect[index] = n_item; }
 };
         
 // INDIVIDUAL MARKER ATTRIBUTES
 AttrSet labels;
 AttrSet tags;
-labels.col = {"NULL", "Red", "Yellow", "Blue", "Green"};    // STORES THE NAMES OF THE MARKER TYPES
-tags.col = {"[ ]", "[#]", "[$]", "[%]", "[&]"};             // STORES THE SYMBOLS WHICH REPRESENT EACH MARKER TYPE
-std::vector<std::string> mk_select;                         // STORES A LIST OF AVAILABLE CHIP/MARKER COLORS (FOR COLOR SELECTION)
+std::vector<std::string> l_c = {"NULL", "Red", "Yellow", "Blue", "Green"};
+std::vector<std::string> t_c = {"[ ]", "[#]", "[$]", "[%]", "[&]"};
+labels(l_c);                                                    // STORES THE NAMES OF THE MARKER TYPES
+tags(t_c);                                                      // STORES THE SYMBOLS WHICH REPRESENT EACH MARKER TYPE
+std::vector<std::string> mk_select;                             // STORES A LIST OF AVAILABLE CHIP/MARKER COLORS (FOR COLOR SELECTION)
 
 // SIZED GRIDS
 std::vector<std::vector<std::string>> ns_grid = {{"|A|", "|B|", "|C|", "|D|", "|E|", "|F|", "|G|"}, 
@@ -87,7 +90,7 @@ bool in_opt(int n) {
 void ren_s(int o) {
     err = false;
     opt_list = {};
-    for (int i = 0; i < o; i++) { opt_list.push(i + 1); }
+    for (int i = 0; i < o; i++) { opt_list.push_back(i + 1); }
     s_clear();
 }
 
@@ -171,8 +174,8 @@ void print_gsetup(int scr) {      // RENDERS ALL OF THE SCREENS NEEDED FOR INITI
         std::cout << "::::\n";
         std::cout << "::::\n";
         std::cout << "::::    Option: ";
-        std::cin >> gamemode;
-        ch_err(gamemode);
+        std::cin >> game_mode;
+        ch_err(game_mode);
         break;
       case 3 :
         ren_s(1);
@@ -256,7 +259,7 @@ void print_gsetup(int scr) {      // RENDERS ALL OF THE SCREENS NEEDED FOR INITI
         break;
     }
 }
-
+/*
 void print_colorsel(int scr) {      // RENDERS THE SCREENS FOR COLOR SELECTION, SEPERATE DEFINITION PREVENTS TWO PLAYERS FROM PICKING THE SAME COLOR
     mk_select = {};
     std::string conc_item;
@@ -299,7 +302,7 @@ void print_colorsel(int scr) {      // RENDERS THE SCREENS FOR COLOR SELECTION, 
         break;
     }
 }
-
+*/
 ////// SET UP FUNCTIONS AND GAMEPLAY
 
 ////// MAIN SPACE WHERE GAME INITIALIZES AND PRIMARY POLLING TAKES PLACE
