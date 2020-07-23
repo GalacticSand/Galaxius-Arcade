@@ -6,7 +6,8 @@
 ////// SET UP PRIMARY GLOBAL VARIABLES AND SETS
 
 bool pterm;                    // TERMINATOR FOR MAIN POLLING
-bool pterm_alt;                // TERMINATOR FOR ANY SECONDARY POLLINGS
+bool pterm_stp;                // TERMINATOR FOR GAME SETUP POLLING
+bool pterm_alt;                // TERMINATOR FOR ANY ADDITIONAL POLLINGS
 bool err;                      // INDICATOR FOR POSSIBLE ERROR RETURN AT SELECTION MENUS
 int opt;                       // STORES USER-CHOSEN OPTION AT SELECTION MENUS
 std::string bopt;              // STORES USER-CHOSEN "Y/N" SELECTION
@@ -85,7 +86,7 @@ void ren_s(int o) {
 void ch_err(int c) { if (!in_opt(c)) { err = true; } }
 
 // SCREEN RENDERS
-void print_titlescr() {
+void p_titlescr() {
     ren_s(1);
     std::cout << ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
     std::cout << ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n";
@@ -110,7 +111,7 @@ void print_titlescr() {
     s_pause();
 }
 
-void print_menuscr() {
+void p_menuscr() {
     ren_s(3);
     std::cout << "::::\n";
     std::cout << "::::\n";
@@ -129,7 +130,7 @@ void print_menuscr() {
     ch_err(opt);
 }
 
-void print_gsetup(int scr) {      // RENDERS ALL OF THE SCREENS NEEDED FOR INITIALIZING A NEW GAME, EXCEPT FOR COLOR SELECTION (SEE BELOW)
+void p_gsetup(int scr) {      // RENDERS ALL OF THE SCREENS NEEDED FOR INITIALIZING A NEW GAME, EXCEPT FOR COLOR SELECTION (SEE BELOW)
     switch(scr) {
       case 1 :
         ren_s(2);
@@ -248,7 +249,7 @@ void print_gsetup(int scr) {      // RENDERS ALL OF THE SCREENS NEEDED FOR INITI
     }
 }
 
-void print_colorsel(int scr) {      // RENDERS THE COLOR SELECTION, DEFINITION SEPRATE FROM REGULAR RENDERS PREVENTS TWO PLAYERS FROM PICKING THE SAME COLOR
+void p_colorsel(int scr) {      // RENDERS THE COLOR SELECTION, DEFINITION SEPRATE FROM REGULAR RENDERS PREVENTS TWO PLAYERS FROM PICKING THE SAME COLOR
     mk_select = {};
     std::string conc_str;
     for (int i = 0; i < tags_col.size(); i++) { 
@@ -292,11 +293,20 @@ void print_colorsel(int scr) {      // RENDERS THE COLOR SELECTION, DEFINITION S
 
 ////// SET UP FUNCTIONS AND GAMEPLAY
 
+void menuscr() {
+    while (true) {    
+        p_menuscr();
+        if (!err) { break; }
+    }
+}
+
 ////// MAIN SPACE WHERE GAME INITIALIZES AND PRIMARY POLLING TAKES PLACE
 
 int main() {
+    p_titlescr();
     pterm = false;
     while (true) {
+        menuscr();
         if (pterm) { break; }
     }
 }
