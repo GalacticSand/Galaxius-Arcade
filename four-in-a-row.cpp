@@ -248,8 +248,13 @@ void print_gsetup(int scr) {      // RENDERS ALL OF THE SCREENS NEEDED FOR INITI
     }
 }
 
-void print_colorsel(int scr) {      // RENDERS THE SCREENS FOR COLOR SELECTION, SEPERATE DEFINITION PREVENTS TWO PLAYERS FROM PICKING THE SAME COLOR
+void print_colorsel(int scr) {      // RENDERS THE COLOR SELECTION, DEFINITION SEPRATE FROM REGULAR RENDERS PREVENTS TWO PLAYERS FROM PICKING THE SAME COLOR
     mk_select = {};
+    std::string conc_str;
+    for (int i = 0; i < tags_col.size(); i++) { 
+        conc_str = (i + 1) + ". " + labels_col[i + 1] + " " + tags_col[i + 1];
+        mk_select.push_back(conc_str);
+    }
     switch(scr) {
       case 1 :
         ren_s(4);
